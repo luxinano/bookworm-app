@@ -1,0 +1,6 @@
+.body {
+  color: red;
+}
+.body .content {
+  content: "just test";
+}
