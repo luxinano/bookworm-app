@@ -1,0 +1,35 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(247, 250, 252);
+}
+
+.welcome-text {
+    color: #f75454;
+    font-weight: 600;
+    font-size: 2rem;
+    -webkit-font-smoothing: antialiased;
+    padding: 100px;
+    border: 5px solid #f75454;
+}
+
+.welcome-text > span {
+    font-size: 2.1rem;
+    text-shadow: 3px 3px #fbbcbc;
+}
+
+.small-welcome-text {
+    color: #f75454;
+    font-size: 0.5rem;
+    font-weight: bold;
+    margin-left: 6px;
+    margin-bottom: 1px;
+}

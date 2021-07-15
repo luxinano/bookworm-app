@@ -1,6 +1,3 @@
-.body {
-  color: red;
-}
-.body .content {
-  content: "just test";
+body {
+  background: red;
 }
