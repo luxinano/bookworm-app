@@ -13,10 +13,10 @@ class CreateOrderItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('order_item', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained('orders');
-            $table->foreignId('book_id')->constrained('books');
+            $table->foreignId('order_id')->constrained('order');
+            $table->foreignId('book_id')->constrained('book');
             $table->unsignedTinyInteger('quantity');
             $table->decimal('price', 5, 2, true);
         });

@@ -13,10 +13,10 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('book', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('author_id')->constrained('authors');
+            $table->foreignId('category_id')->constrained('category');
+            $table->foreignId('author_id')->constrained('author');
             $table->tinyText('book_title');
             $table->text('book_summary');
             $table->decimal('book_price', 5, 2, true);
@@ -31,8 +31,8 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
-        Schema::dropIfExists('discounts');
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('review');
+        Schema::dropIfExists('discount');
+        Schema::dropIfExists('book');
     }
 }

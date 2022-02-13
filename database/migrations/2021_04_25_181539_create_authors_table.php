@@ -13,7 +13,7 @@ class CreateAuthorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('author', function (Blueprint $table) {
             $table->id();
             $table->tinyText('author_name');
             $table->text('author_bio')->nullable();
@@ -27,6 +27,6 @@ class CreateAuthorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('author');
     }
 }

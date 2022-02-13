@@ -13,9 +13,9 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('review', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('book_id')->constrained('books');
+            $table->foreignId('book_id')->constrained('book');
             $table->string('review_title', 120);
             $table->text('review_details')->nullable();
             $table->timestamp('review_date');
@@ -30,6 +30,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_reviews');
+        Schema::dropIfExists('review');
     }
 }

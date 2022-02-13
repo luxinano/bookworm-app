@@ -13,9 +13,9 @@ class CreateDiscountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('discounts', function (Blueprint $table) {
+        Schema::create('discount', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('book_id')->constrained('books');
+            $table->foreignId('book_id')->constrained('book');
             $table->date('discount_start_date');
             $table->date('discount_end_date')->nullable();
             $table->decimal('discount_price', 5, 2, true);
@@ -29,6 +29,6 @@ class CreateDiscountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('discount_books');
+        Schema::dropIfExists('discount');
     }
 }
