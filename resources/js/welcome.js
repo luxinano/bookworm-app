@@ -6,7 +6,7 @@ class Welcome extends Component {
         return (
             <main>
                 <section className="content">
-                    <div className="small-welcome-text">AMA</div>
+                    <div className="small-welcome-text">Bookworm</div>
                     <div className="welcome-text">
                         Welcome to <span>B</span>ook <span>W</span>orm
                     </div>
