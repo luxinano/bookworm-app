@@ -19,7 +19,7 @@ class CreateReviewsTable extends Migration
             $table->string('review_title', 120);
             $table->text('review_details')->nullable();
             $table->timestamp('review_date');
-            $table->enum('rating_start', [1, 2, 3, 4, 5]);
+            $table->smallInteger('rating_start');
         });
     }
 
