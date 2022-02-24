@@ -11,4 +11,18 @@ class Author extends Model
 
     public $timestamps = false;
     protected $table = 'author';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'author_name',
+        'author_bio',
+    ];
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
 }
