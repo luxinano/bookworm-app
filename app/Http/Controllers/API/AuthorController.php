@@ -61,29 +61,32 @@ class AuthorController extends Controller
      */
     public function update(AuthorRequest $request, $id)
     {
-
-        $author = Author::find($id);
-        $author->update($request->all());
-
-        return $author;
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
         $author = Author::find($id);
         if ($author) {
-            $author->delete();
-            return response()->json(['message' => 'Deleted'], 201);
+            $author->update($request->all());
+            return response()->json(['message' => 'Updated'], 200);
         } else {
-            return response()->json(['Message' => 'Not Found'], 404);
+            return response()->json(['message' => 'Failed'], 200);
         }
     }
-}
+
+
+        /**
+         * Remove the specified resource from storage.
+         *
+         * @param int $id
+         * @return \Illuminate\Http\Response
+         */
+        public
+        function destroy($id)
+        {
+            //
+            $author = Author::find($id);
+            if ($author) {
+                $author->delete();
+                return response()->json(['message' => 'Deleted'], 201);
+            } else {
+                return response()->json(['Message' => 'Not Found'], 404);
+            }
+        }
+    }

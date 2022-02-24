@@ -52,18 +52,11 @@ class CategoryController extends Controller
      * @param \App\Models\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $request->validate([
-            'category_name' => 'required',
-            'category_desc' => 'required',
-        ]);
-
         $category = Category::find($id);
         if ($category) {
-            $category->category_name = $request->category_name;
-            $category->category_desc = $request->category_desc;
-            $category->update();
+            $category->update($request->all());
             return response()->json(['message' => 'Updated'], 200);
         } else {
             return response()->json(['message' => 'Failed'], 200);
@@ -80,6 +73,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return response(['success' => true]);
+        return response()->json(['message' => 'Deleted'], 200);
     }
+
 }

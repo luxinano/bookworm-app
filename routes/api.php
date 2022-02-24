@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthenController;
 use App\Http\Controllers\API\AuthorController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\DiscountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ Route::post('login',[AuthenController::class,'login']);
 
 Route::resource('authors',AuthorController::class);
 Route::resource('category',CategoryController::class);
+Route::resource('discount', DiscountController::class);
