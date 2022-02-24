@@ -4,6 +4,8 @@ use App\Http\Controllers\API\AuthenController;
 use App\Http\Controllers\API\AuthorController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\DiscountController;
+use App\Http\Controllers\API\ReviewController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +24,7 @@ Route::post('register',[AuthenController::class,'register']);
 Route::post('login',[AuthenController::class,'login']);
 
 Route::resource('authors',AuthorController::class);
-Route::resource('category',CategoryController::class);
-Route::resource('discount', DiscountController::class);
+Route::resource('categories',CategoryController::class);
+Route::resource('discounts', DiscountController::class);
+Route::resource('reviews', ReviewController::class);
+Route::resource('users', UserController::class);

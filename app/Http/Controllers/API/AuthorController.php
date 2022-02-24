@@ -33,6 +33,7 @@ class AuthorController extends Controller
         $author = Author::create($validated_r);
 
         return response()->json(['Successfully' => $author], 201);
+
     }
 
     /**
@@ -70,23 +71,17 @@ class AuthorController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Author $author)
+    {
+        //
+        $author->delete();
+        return response()->json(['message' => 'Deleted'], 200);
 
-        /**
-         * Remove the specified resource from storage.
-         *
-         * @param int $id
-         * @return \Illuminate\Http\Response
-         */
-        public
-        function destroy($id)
-        {
-            //
-            $author = Author::find($id);
-            if ($author) {
-                $author->delete();
-                return response()->json(['message' => 'Deleted'], 201);
-            } else {
-                return response()->json(['Message' => 'Not Found'], 404);
-            }
-        }
     }
+}
