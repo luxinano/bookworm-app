@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\Models\Book
@@ -45,13 +46,35 @@ class Book extends Model
         'book_cover_photo',
     ];
 
-    public function category()
+    public function categories()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function author()
+    public function authors()
     {
         return $this->belongsTo(Author::class);
+    }
+
+    public function discounts()
+    {
+        return $this->hasMany(Discount::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(order_item::class);
+    }
+
+    //Scope
+
+    public function scopeSubPrice()
+    {
+
     }
 }

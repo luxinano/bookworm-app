@@ -38,7 +38,7 @@ class Discount extends Model
         'discount_price'
     ];
 
-    public function book()
+    public function books()
     {
         return $this->belongsTo(Book::class);
     }

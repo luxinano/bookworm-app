@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthenController;
 use App\Http\Controllers\API\AuthorController;
+use App\Http\Controllers\API\BookController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\DiscountController;
 use App\Http\Controllers\API\ReviewController;
@@ -28,3 +29,5 @@ Route::resource('categories',CategoryController::class);
 Route::resource('discounts', DiscountController::class);
 Route::resource('reviews', ReviewController::class);
 Route::resource('users', UserController::class);
+//Route::resource('books', BookController::class);
+Route::get('books',[BookController::class,'index']);

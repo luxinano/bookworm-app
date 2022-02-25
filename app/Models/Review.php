@@ -41,12 +41,12 @@ class Review extends Model
         'rating_start',
     ];
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function book()
+    public function books()
     {
         return $this->belongsTo(Book::class);
     }
