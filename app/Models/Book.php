@@ -71,10 +71,14 @@ class Book extends Model
         return $this->hasMany(order_item::class);
     }
 
-    //Scope
+    //Local Scope
 
-    public function scopeSubPrice()
+    public function scopeSelectSubPrice($query)
     {
-
+//        $b= (DB::raw('book b'))
+       return  $query->selectRaw('book.*,d.discount_price,(book.book_price - d.discount_price) as subbed_price')
+            ->join(DB::raw('discount d'),'book.id','=','d.book_id')
+            ->orderByRaw('subbed_price DESC')
+            ->limit(8);
     }
 }

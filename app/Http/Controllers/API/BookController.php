@@ -4,8 +4,13 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookResource;
+use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Author;
+use App\Models\Category;
+use App\Models\Discount;
+use App\Models\Review;
 use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
@@ -93,5 +98,23 @@ class BookController extends Controller
         $book->delete();
 
         return response()->json(['Message'=>'Deleted'],200);
+    }
+
+    public function onsale()
+    {
+//        $books = DB::table("book as b")
+//            ->select("b.*", "d.discount_price", "b.
+//             - d.discount_price as subbed_price")
+//            ->join("discount as d",'d.book_id','=','b.id' )
+//            ->orderBy("subbed_price","desc")
+//            ->get();
+//        $books = DB::table(DB::raw('book b'))
+//            ->select('b.*','d.discount_price',DB::raw('(b.book_price - d.discount_price) as subbed_price'))
+//            ->join(DB::raw('discount d'),'b.id','=','d.book_id')
+//            ->orderByRaw('subbed_price DESC')
+//            ->limit(8)
+//            ->get();
+        $books = Book::SelectSubPrice()->get();
+        return $books;
     }
 }
