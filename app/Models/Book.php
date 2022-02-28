@@ -68,17 +68,23 @@ class Book extends Model
 
     public function orderItems()
     {
-        return $this->hasMany(order_item::class);
+        return $this->hasMany(OrderItem::class);
     }
 
     //Local Scope
 
-    public function scopeSelectSubPrice($query)
+    public function scopeGetSubPrice($query)
     {
-//        $b= (DB::raw('book b'))
        return  $query->selectRaw('book.*,d.discount_price,(book.book_price - d.discount_price) as subbed_price')
             ->join(DB::raw('discount d'),'book.id','=','d.book_id')
-            ->orderByRaw('subbed_price DESC')
-            ->limit(8);
+            ->orderByRaw('subbed_price DESC');
+    }
+
+    public function scopeGetAvgReview($query)
+    {
+        return $query->select('book.*',DB::raw('(avg(r.rating_start)) as avg_rate'))
+            ->join(DB::raw('review r'),'book.id','=','r.book_id')
+            ->groupBy('book.id')
+            ->orderByRaw('avg_rate DESC');
     }
 }

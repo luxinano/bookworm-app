@@ -31,6 +31,7 @@ Route::resource('reviews', ReviewController::class);
 Route::resource('users', UserController::class);
 //Route::resource('books', BookController::class);
 Route::get('books/onsale',[BookController::class,'onsale']);
-//Route::get('books',[BookController::class,'index']);
+Route::get('books/recommend',[BookController::class,'recommend']);
+
 
 

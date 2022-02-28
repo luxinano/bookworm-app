@@ -114,7 +114,13 @@ class BookController extends Controller
 //            ->orderByRaw('subbed_price DESC')
 //            ->limit(8)
 //            ->get();
-        $books = Book::SelectSubPrice()->get();
-        return $books;
+        $onsale = Book::GetSubPrice()->limit(10)->get();
+        return $onsale;
+    }
+
+    public function recommend()
+    {
+        $rec = Book::GetAvgReview()->limit(8)->get();
+        return BookResource::collection($rec);
     }
 }
