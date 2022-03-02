@@ -29,7 +29,7 @@ class BookResource extends JsonResource
 
             'final_price' => $this->final_price + 0,
             'avg_rate' => $this->avg_rate + 0,
-            'reviews_count' => $this->reviews_count + 0,
+            'counted_review' => $this->counted_review + 0,
             'star_list' => $this->stars_list + 0,
         ];
     }

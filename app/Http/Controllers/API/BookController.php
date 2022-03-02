@@ -108,12 +108,13 @@ class BookController extends Controller
 
     public function recommend()
     {
-        $test = Book::GetRecommend()->take(8)->get();
-        return BookResource::collection($test);
+        $recommend = Book::GetRecommend()->take(8)->get();
+        return BookResource::collection($recommend);
     }
 
-    public function test()
+    public function popular()
     {
-
+        $popular = Book::GetPopular()->take(8)->get();
+        return BookResource::collection($popular);
     }
 }

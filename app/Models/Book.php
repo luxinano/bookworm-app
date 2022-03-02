@@ -102,7 +102,6 @@ class Book extends Model
 
     }
 
-
     public function scopeGetFinalPrice($query)
     {
         return $query->addSelect([
@@ -116,11 +115,19 @@ class Book extends Model
         ]);
     }
 
+    public function scopeGetCountReview($query)
+    {
+        return $query->addSelect([
+            'counted_review' => Review::select(DB::raw('count(*)'))
+                ->whereColumn('book_id', 'book.id')
+        ]);
+    }
+
     //SHOW-OFF STAGE
     public function scopeGetRecommend($query)
     {
         // get top 8 books with most rating stars
-        return $query->GetAvgReview()->GetFinalPrice()->orderByDesc('avg_rate')->orderBy('final_price');
+        return $query->GetAvgReview()->GetFinalPrice()->orderByDesc('avg_rate')->orderByDesc('final_price');
     }
 
 
@@ -129,4 +136,12 @@ class Book extends Model
         //top 10 books with the most discount
         return $query->whereHas('activeDiscount')->GetMinusPrice()->orderByDesc('minus');
     }
+
+    public function scopeGetPopular($query)
+    {
+        //Popular: get top 8 books with most reviews - total
+        //number review of a book and lowest final price
+        return $query->whereHas('activeDiscount')->GetCountReview()->GetFinalPrice()->orderByDesc('counted_review')->orderBy('final_price');
+    }
+
 }

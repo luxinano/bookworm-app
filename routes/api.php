@@ -34,9 +34,11 @@ Route::resource('users', UserController::class);
 //Advance
 Route::get('books/onsale',[BookController::class,'onsale']);
 Route::get('books/recommend',[BookController::class,'recommend']);
+Route::get('books/popular',[BookController::class,'popular']);
+
 
 //TEST
-//Route::get('books/test',[BookController::class,'test']);
+Route::get('books/test',[BookController::class,'test']);
 
 
 
