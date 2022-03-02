@@ -46,6 +46,7 @@ class Book extends Model
         'book_cover_photo',
     ];
 
+    //Local Func
     public function categories()
     {
         return $this->belongsTo(Category::class);
@@ -71,20 +72,61 @@ class Book extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function activeDiscount()
+    {
+        return $this->discounts()
+            ->whereDate('discount_start_date', '<=', now())
+            ->where(function ($query) {
+                $query->whereDate('discount_end_date', '>=', now())
+                    ->orWhereNull('discount_end_date');
+            });
+    }
+
     //Local Scope
 
-    public function scopeGetSubPrice($query)
+    public function scopeGetMinusPrice($query)
     {
-       return  $query->selectRaw('book.*,d.discount_price,(book.book_price - d.discount_price) as subbed_price')
-            ->join(DB::raw('discount d'),'book.id','=','d.book_id')
-            ->orderByRaw('subbed_price DESC');
+        //subtrahend - minus = result
+        return $query->addSelect([
+            'minus' => Discount::select(DB::raw('(book_price-discount_price)'))
+                ->whereColumn('book.id', 'book_id')
+        ]);
     }
 
     public function scopeGetAvgReview($query)
     {
-        return $query->select('book.*',DB::raw('(avg(r.rating_start)) as avg_rate'))
-            ->join(DB::raw('review r'),'book.id','=','r.book_id')
-            ->groupBy('book.id')
-            ->orderByRaw('avg_rate DESC');
+        return $query->addSelect([
+            'avg_rate' => Review::select(DB::raw('coalesce((avg(rating_start)::float),0)'))
+                ->whereColumn('book.id', 'book_id')
+        ]);
+
+    }
+
+
+    public function scopeGetFinalPrice($query)
+    {
+        return $query->addSelect([
+            'final_price' => Discount::select(DB::raw('coalesce(max(discount_price), book_price)'))
+                ->whereColumn('book_id', 'book.id')
+                ->whereDate('discount_start_date', '<=', now())
+                ->where(function ($query) {
+                    $query->whereDate('discount_end_date', '>=', now())
+                        ->orWhereNull('discount_end_date');
+                })
+        ]);
+    }
+
+    //SHOW-OFF STAGE
+    public function scopeGetRecommend($query)
+    {
+        // get top 8 books with most rating stars
+        return $query->GetAvgReview()->GetFinalPrice()->orderByDesc('avg_rate')->orderBy('final_price');
+    }
+
+
+    public function scopeGetOnSale($query)
+    {
+        //top 10 books with the most discount
+        return $query->whereHas('activeDiscount')->GetMinusPrice()->orderByDesc('minus');
     }
 }

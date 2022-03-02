@@ -30,8 +30,14 @@ Route::resource('discounts', DiscountController::class);
 Route::resource('reviews', ReviewController::class);
 Route::resource('users', UserController::class);
 //Route::resource('books', BookController::class);
+
+//Advance
 Route::get('books/onsale',[BookController::class,'onsale']);
 Route::get('books/recommend',[BookController::class,'recommend']);
+
+//TEST
+//Route::get('books/test',[BookController::class,'test']);
+
 
 
 

@@ -97,30 +97,23 @@ class BookController extends Controller
     {
         $book->delete();
 
-        return response()->json(['Message'=>'Deleted'],200);
+        return response()->json(['Message' => 'Deleted'], 200);
     }
 
     public function onsale()
     {
-//        $books = DB::table("book as b")
-//            ->select("b.*", "d.discount_price", "b.
-//             - d.discount_price as subbed_price")
-//            ->join("discount as d",'d.book_id','=','b.id' )
-//            ->orderBy("subbed_price","desc")
-//            ->get();
-//        $books = DB::table(DB::raw('book b'))
-//            ->select('b.*','d.discount_price',DB::raw('(b.book_price - d.discount_price) as subbed_price'))
-//            ->join(DB::raw('discount d'),'b.id','=','d.book_id')
-//            ->orderByRaw('subbed_price DESC')
-//            ->limit(8)
-//            ->get();
-        $onsale = Book::GetSubPrice()->limit(10)->get();
+        $onsale = Book::GetOnSale()->take(10)->get();
         return $onsale;
     }
 
     public function recommend()
     {
-        $rec = Book::GetAvgReview()->limit(8)->get();
-        return BookResource::collection($rec);
+        $test = Book::GetRecommend()->take(8)->get();
+        return BookResource::collection($test);
+    }
+
+    public function test()
+    {
+
     }
 }
