@@ -35,6 +35,8 @@ Route::get('books/onsale',[BookController::class,'onsale']);
 Route::get('books/recommend',[BookController::class,'recommend']);
 Route::get('books/popular',[BookController::class,'popular']);
 Route::get('books/filter/category/{id}',[BookController::class,'filterByCategory']);
+Route::get('books/filter/author/{id}',[BookController::class,'filterByAuthor']);
+
 
 
 //TEST

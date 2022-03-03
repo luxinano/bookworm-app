@@ -122,4 +122,10 @@ class BookController extends Controller
         $category = Category::find($categ_id);
         return ($category->books);
     }
+
+    public function filterByAuthor($author_id)
+    {
+        $author = Author::find($author_id);
+        return $author->books;
+    }
 }
