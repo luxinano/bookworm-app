@@ -7,7 +7,6 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\DiscountController;
 use App\Http\Controllers\API\ReviewController;
 use App\Http\Controllers\API\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +34,7 @@ Route::resource('books', BookController::class);
 Route::get('books/onsale',[BookController::class,'onsale']);
 Route::get('books/recommend',[BookController::class,'recommend']);
 Route::get('books/popular',[BookController::class,'popular']);
+Route::get('books/filter/category/{id}',[BookController::class,'filterByCategory']);
 
 
 //TEST

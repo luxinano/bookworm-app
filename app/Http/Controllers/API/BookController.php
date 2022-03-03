@@ -23,7 +23,7 @@ class BookController extends Controller
     public function index()
     {
         return $book = DB::table('book')
-           // ->join('discount', 'book.id', '=', 'discount.book_id')
+            // ->join('discount', 'book.id', '=', 'discount.book_id')
             ->select('book.*')
             ->paginate(15);
     }
@@ -117,10 +117,9 @@ class BookController extends Controller
         return BookResource::collection($popular);
     }
 
-    public function test($category_id)
+    public function filterByCategory($categ_id)
     {
-        $category = Category::findOrFail($category_id);
-
-        return BookResource::collection($category->books);
+        $category = Category::find($categ_id);
+        return ($category->books);
     }
 }
