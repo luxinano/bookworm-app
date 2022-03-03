@@ -82,6 +82,10 @@ class Book extends Model
             });
     }
 
+    public function scopeGetAll($query){
+        return $query->$this;
+    }
+
     //Local Scope
 
     public function scopeGetMinusPrice($query)

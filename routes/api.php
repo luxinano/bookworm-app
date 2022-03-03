@@ -29,7 +29,7 @@ Route::resource('categories',CategoryController::class);
 Route::resource('discounts', DiscountController::class);
 Route::resource('reviews', ReviewController::class);
 Route::resource('users', UserController::class);
-//Route::resource('books', BookController::class);
+Route::resource('books', BookController::class);
 
 //Advance
 Route::get('books/onsale',[BookController::class,'onsale']);
@@ -38,7 +38,7 @@ Route::get('books/popular',[BookController::class,'popular']);
 
 
 //TEST
-Route::get('books/test',[BookController::class,'test']);
+Route::get('books/test/{category_id}',[BookController::class,'test']);
 
 
 

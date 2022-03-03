@@ -18,15 +18,14 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function index()
     {
-        $book = DB::table('book')
-            ->join('discount', 'book.id', '=', 'discount.book_id')
-            ->select('book.*', 'discount.discount_price')
+        return $book = DB::table('book')
+           // ->join('discount', 'book.id', '=', 'discount.book_id')
+            ->select('book.*')
             ->paginate(15);
-        return $book;
     }
 
     /**
@@ -116,5 +115,12 @@ class BookController extends Controller
     {
         $popular = Book::GetPopular()->take(8)->get();
         return BookResource::collection($popular);
+    }
+
+    public function test($category_id)
+    {
+        $category = Category::findOrFail($category_id);
+
+        return BookResource::collection($category->books);
     }
 }
