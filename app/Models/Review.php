@@ -11,4 +11,9 @@ class Review extends Model
 
     public $timestamps = false;
     protected $table = 'review';
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }
