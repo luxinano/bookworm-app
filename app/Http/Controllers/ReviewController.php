@@ -10,4 +10,8 @@ class ReviewController extends Controller
         $review = new ReviewRepository();
         return $review -> getReview($book_id);
     }
+    public function rating($book_id){
+        $rating = new ReviewRepository();
+        return $rating -> getAVGRating($book_id);
+    }
 }

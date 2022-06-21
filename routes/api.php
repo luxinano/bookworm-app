@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,14 @@ use App\Http\Controllers\ReviewController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('book/{id?}',[BookController::class, 'index']);
-Route::get('book/{book_id}/review',[ReviewController::class, 'review']);
+Route::prefix('book')->group(function(){
+    Route::controller(BookController::class)->group(function(){
+        Route::get('discount','discount');
+        Route::get('{id?}','index');
+    });
+    Route::controller(ReviewController::class)->group(function(){
+        Route::get('{book_id}/rating','rating');
+        Route::get('{book_id}/review','review');
+    });
+});
+Route::resource('category/',CategoryController::class);

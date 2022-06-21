@@ -10,5 +10,10 @@ class BookController extends Controller
         $book = new BookRepository();
         return $book->getBookByID($id);
     }
+
+    public function discount(){
+        $discountedBook = new BookRepository();
+        return $discountedBook->getDiscountedBook();
+    }
     
 }
