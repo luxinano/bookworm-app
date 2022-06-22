@@ -15,5 +15,10 @@ class BookController extends Controller
         $discountedBook = new BookRepository();
         return $discountedBook->getDiscountedBook();
     }
+
+    public function recommended(){
+        $recommended = new BookRepository();
+        return $recommended -> getTopRated();
+    }
     
 }

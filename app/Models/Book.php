@@ -19,4 +19,5 @@ class Book extends Model
     public function discount(){
         return $this->hasMany(Discount::class);
     }
+    
 }

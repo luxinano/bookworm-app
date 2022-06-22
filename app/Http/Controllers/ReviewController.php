@@ -14,4 +14,5 @@ class ReviewController extends Controller
         $rating = new ReviewRepository();
         return $rating -> getAVGRating($book_id);
     }
+    
 }
