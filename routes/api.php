@@ -28,6 +28,7 @@ Route::prefix('book')->group(function(){
     Route::controller(BookController::class)->group(function(){
         Route::get('discount','discount');
         Route::get('recommended','recommended');
+        Route::get('popular','popular');
         Route::get('{id?}','index');
     });
 });

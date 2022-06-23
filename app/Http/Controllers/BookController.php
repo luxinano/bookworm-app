@@ -20,5 +20,11 @@ class BookController extends Controller
         $recommended = new BookRepository();
         return $recommended -> getTopRated();
     }
+
+
+    public function popular(){
+        $recommended = new BookRepository();
+        return $recommended -> getMostViews();
+    }
     
 }
