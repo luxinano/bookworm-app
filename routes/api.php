@@ -20,16 +20,6 @@ use App\Http\Controllers\CategoryController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::prefix('book')->group(function(){
-    Route::controller(ReviewController::class)->group(function(){
-        Route::get('{book_id}/rating','rating');
-        Route::get('{book_id}/review','review');
-    });
-    Route::controller(BookController::class)->group(function(){
-        Route::get('discount','discount');
-        Route::get('recommended','recommended');
-        Route::get('popular','popular');
-        Route::get('{id?}','index');
-    });
-});
-Route::resource('category/',CategoryController::class);
+
+Route::resource('book',BookController::class);
+Route::resource('category',CategoryController::class);
