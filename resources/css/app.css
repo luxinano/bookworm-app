@@ -1,3 +1,7 @@
+:root {
+    --main-red: #ec5454;
+    --main-black: #18110b;
+  }
 body {
     font-family: 'Nunito', sans-serif;
     padding: 0;
@@ -33,3 +37,37 @@ main {
     margin-left: 6px;
     margin-bottom: 1px;
 }
+
+#sale{
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.book-cover{
+    width: 300px; 
+    height: 337px; 
+    object-fit: cover;
+}
+
+ .book-card{
+    margin: 10px;
+    height: 530px; 
+} 
+
+.slick-prev:before {
+    color: var(--main-red) !important;
+  }
+  .slick-next:before {
+    color: var(--main-red) !important;
+  }
+
+  .sale-container{
+    border: 1px solid lightgrey !important;
+    margin: 5px;
+    padding: 0px 0px 25px 0px;
+  }
+
+  .view-all-button{
+    background-color: var(--main-red);
+    margin-bottom: 3px;
+  }

@@ -33,7 +33,7 @@ class BookController extends Controller
     {
         $book = new BookRepository();
         // if ($request->has('review')) {
-        //     return $review->getReview($request->get('id'));
+        //      return $review->getReview($request->get('id'));
         // }
         // if ($request->has('rating')) {
         //     return $review->getAVGRating($request->get('id'));

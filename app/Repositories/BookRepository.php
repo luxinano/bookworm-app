@@ -15,8 +15,14 @@ class BookRepository
     public function getListBook($request = [])
     {
         $sort = $request['sort'] ?? null;
+        $final_price = $this->getFinalPrice(false);
         $book = $this->query
-            ->leftJoin('discount', 'book.id', '=', 'discount.book_id');
+        ->select('book_title','author_name','book_price','book_cover_photo','final_price')
+            ->leftJoin('discount', 'book.id', '=', 'discount.book_id')
+            ->leftJoin('author', 'book.author_id', '=', 'author.id')
+            ->joinSub($final_price, 'f', function ($join) {
+                $join->on('book.id', '=', 'f.id');
+            });
         if (!empty($request['category'])) {
             $book->whereIn('book.category_id', explode(',', $request['category']));
         }
@@ -33,6 +39,7 @@ class BookRepository
         $perpage = !empty($request['perpage']) ? $request['perpage'] : 20;
 
         return $book
+            
             ->orderbyRaw('discount.discount_price desc NULLS LAST')
             ->Paginate($perpage)
             ->withQueryString();
@@ -47,9 +54,11 @@ class BookRepository
     public function getDiscountedBook()
     {
         return $this->query
-            ->selectRaw('book.*,book.book_price - discount.discount_price as sub_price')
+        ->select('book_title','author_name','book_price','book_cover_photo')
+            ->selectRaw('book.book_price - discount.discount_price as sub_price')
             ->take(10)
             ->rightJoin('discount', 'book.id', '=', 'discount.book_id')
+            ->leftJoin('author', 'book.author_id', '=', 'author.id')
             ->where(function ($query) {
                 $query->whereDate('discount_end_date', '>=', today())
                     ->orWhereNull('discount_end_date');
@@ -84,12 +93,12 @@ class BookRepository
 
     public function getFinalPrice($not_raw_sql = true)
     {
-        $final_price = Book::selectRaw('book.* ,
+        $final_price = Book::selectRaw('book.id ,
         (case 
             when discount.discount_start_date <= current_date 
             and (discount.discount_end_date >= current_date or discount.discount_end_date is null) 
             then discount.discount_price
-            else book.book_price
+            else null
         end) as final_price')
             ->leftJoin('discount', 'book.id', '=', 'discount.book_id');
         if (!$not_raw_sql) {

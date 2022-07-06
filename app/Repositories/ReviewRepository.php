@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Review;
 
+
 class ReviewRepository
 {
     public function __construct()
@@ -13,7 +14,7 @@ class ReviewRepository
 
     public function getReview($book_id)
     {
-        return $this->query->where('book_id', $book_id)->get();
+        return Review::find($book_id)->book;
     }
 
     public function getAVGRating($book_id)
