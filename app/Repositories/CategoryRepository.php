@@ -12,7 +12,7 @@ class CategoryRepository
     }
 
     public function getCategory(){
-        return Category::all();
+        return Category::select('category_name','id')->get();
     }
     
 }

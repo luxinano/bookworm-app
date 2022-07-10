@@ -11,7 +11,7 @@ class Recommemded extends Component {
     }
 
     async componentDidMount() {
-        let res = await axios.get(`http://localhost:8000/api/book?recommended`);
+        let res = await axios.get(`/api/book?recommended`);
         this.setState({
             recommendedBooks: res && res.data ? res.data : []
         })
@@ -21,7 +21,7 @@ class Recommemded extends Component {
     render() {
         let { recommendedBooks } = this.state;
         return (
-            <Container className="row">
+            <Container className="row" >
                 {recommendedBooks && recommendedBooks.length > 0 &&
                     recommendedBooks.map((item, index) => {
                         return (
@@ -29,6 +29,7 @@ class Recommemded extends Component {
                             <div className="col-md-3" key={index}>
                                 <BookCard index={index}
                                     book_price={item.book_price}
+                                    final_price={item.final_price}
                                     book_title={item.book_title}
                                     book_cover={item.book_cover_photo}
                                     author_name={item.author_name}>

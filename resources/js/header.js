@@ -6,6 +6,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 class Header extends Component {
     render() {
         return (
+        <div id="header">
             <Navbar bg="#f8f9fb" expand="lg">
                 <Container fluid>
                     <Navbar.Brand href="/">
@@ -23,12 +24,12 @@ class Header extends Component {
                         >
                             <Nav.Link href="#/homepage">Home</Nav.Link>
                             <Nav.Link href="#/books">Shop</Nav.Link>
-                            <Nav.Link href="#action3">About</Nav.Link>
-                            <Nav.Link href="#action4">Cart</Nav.Link>
-                            <Nav.Link href="#action5">Sign In</Nav.Link>
+                            <Nav.Link href="#/about">About</Nav.Link>
+                            <Nav.Link href="#/cart">Cart</Nav.Link>
+                            <Nav.Link href="#/signin">Sign In</Nav.Link>
                         </Nav>
                 </Container>
-            </Navbar>);
+            </Navbar></div>);
     }
 }
 

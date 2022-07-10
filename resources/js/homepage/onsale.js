@@ -43,9 +43,7 @@ class OnSale extends Component {
                         <Slider {...settings} >
                             {saleBooks && saleBooks.length > 0 &&
                                 saleBooks.map((item, index) => {
-
                                     return (
-
                                         <div key={index}>
                                             <BookCard index={index}
                                                 book_price={item.book_price}

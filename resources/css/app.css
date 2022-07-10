@@ -1,6 +1,7 @@
 :root {
     --main-red: #ec5454;
     --main-black: #18110b;
+    --main-gray: rgb(242, 242, 242);
   }
 body {
     font-family: 'Nunito', sans-serif;
@@ -15,6 +16,7 @@ main {
     justify-content: center;
     background: rgb(247, 250, 252);
 }
+
 
 .welcome-text {
     color: #f75454;
@@ -43,6 +45,11 @@ main {
     margin: 0 auto;
 }
 
+#featured{
+  max-width: 80%;
+  margin: 0 auto;
+}
+
 .book-cover{
     width: 300px; 
     height: 337px; 
@@ -50,11 +57,12 @@ main {
 }
 
  .book-card{
-    margin: 10px;
+    margin:  10px 0px;
     height: 530px; 
 } 
 
 .slick-prev:before {
+  font-size: 2.5rem;
     color: var(--main-red) !important;
   }
   .slick-next:before {
@@ -71,3 +79,105 @@ main {
     background-color: var(--main-red);
     margin-bottom: 3px;
   }
+
+  .featured-container{
+    
+    
+    border-right:  1px solid lightgrey !important;
+    border-bottom: 1px solid lightgrey !important;
+    border-left:   1px solid lightgrey !important;
+   
+    
+  }
+
+  .slick-slide>div {padding: 0 10px;}
+
+ .row.container{
+  margin: 0 auto;
+
+}
+
+.price{
+  background-color: var(--main-gray);
+}
+
+#footer{
+  background-color: rgb(242, 242, 242) !important;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+#header{
+  margin-bottom: 20px;
+  background-color: rgb(242, 242, 242) !important;
+}
+
+#price{
+  background-color: var(--main-gray);
+}
+
+
+
+
+.number-input input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.number-input input[type="number"]::-webkit-inner-spin-button,
+.number-input input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+.number-input {
+  margin-bottom: 3rem;
+}
+.number-input button {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+.number-input button:before,
+.number-input button:after {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  height: 2px;
+  transform: translate(-50%, -50%);
+}
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.number-input input[type="number"] {
+  text-align: center;
+}
+.number-input.number-input {
+  border: 1px solid #ced4da;
+  width: 10rem;
+  border-radius: 0.25rem;
+}
+.number-input.number-input button {
+  width: 2.6rem;
+  height: 0.7rem;
+}
+.number-input.number-input button.minus {
+  padding-left: 10px;
+}
+.number-input.number-input button:before,
+.number-input.number-input button:after {
+  width: 0.7rem;
+  background-color: #495057;
+}
+.number-input.number-input input[type="number"] {
+  max-width: 4rem;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-width: 0 1px;
+  font-size: 1rem;
+  height: 2rem;
+  color: #495057;
+}

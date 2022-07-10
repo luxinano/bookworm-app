@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 
 /*
@@ -23,3 +23,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('book',BookController::class);
 Route::resource('category',CategoryController::class);
+Route::resource('author',AuthorController::class);

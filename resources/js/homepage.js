@@ -8,8 +8,8 @@ class HomePage extends Component {
     render() {
         return (
             <>
-            <OnSale />
-            <Featured/>
+                <OnSale />
+                <Featured />
             </>
         );
     }

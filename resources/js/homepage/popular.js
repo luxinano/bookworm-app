@@ -27,6 +27,7 @@ class Popular extends Component {
 
                             <div className="col-md-3" key={index}>
                                 <BookCard index={index}
+                                final_price={item.final_price}
                                     book_price={item.book_price}
                                     book_title={item.book_title}
                                     book_cover={item.book_cover_photo}
