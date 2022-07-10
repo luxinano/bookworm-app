@@ -42,7 +42,7 @@ class ShopPage extends Component {
 
     render() {
         return (
-            <>
+            <Container>
                 <h3>Books</h3> 
                 Filtered by 
                 <p>{(this.category==='&category=0')
@@ -239,7 +239,7 @@ class ShopPage extends Component {
 
                 </div>
 
-            </>
+            </Container>
         );
     }
 }

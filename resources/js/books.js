@@ -43,15 +43,11 @@ class Books extends Component {
 
 
 
-  pageButton = () => {
-
-  }
 
 
   render() {
     let items = [];
     if (this.state.list_books !== null) {
-      this.pageButton();
 
       let active = this.state.list_books.current_page;
       //----------------------------

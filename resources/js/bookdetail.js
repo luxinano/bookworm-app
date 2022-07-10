@@ -5,7 +5,7 @@ import axios from 'axios';
 import { IMAGES } from './image.js'
 import InputNumber from './bookdetailpage/inputnumber';
 import { Col, Row, Container, Image, Card, ListGroup, Button, ListGroupItem } from 'react-bootstrap'
-
+import Review from './bookdetailpage/review';
 function withParams(Component) {
     return props => <Component {...props} params={useParams()} />;
 }
@@ -16,6 +16,7 @@ class BookDetail extends Component {
 
     state = {
         book: null,
+        star:0,
     }
 
     componentDidMount() {
@@ -26,21 +27,30 @@ class BookDetail extends Component {
 
     async getData(id) {
         let res = await axios.get(`/api/book/${id}`);
+        
         this.setState({
-            book: res.data[0]
+            book: res.data[0],
+            
         }
 
         )
     }
 
     render() {
+
+       
+
+
+
+
+
         return (
-            <>
+            <Container>
                 {(this.state.book != null) ?
                     <>
                         <h3>{this.state.book.category_name}</h3>
                         <hr></hr>
-                        <Container fluit>
+                        <Container>
                             
                                 <Row>
                                 
@@ -57,6 +67,7 @@ class BookDetail extends Component {
                                                 </Col>
                                                 <Col>
                                                 <Container>
+                                                
                                                     <h3>{this.state.book.book_title}</h3>
                                                     <p>{this.state.book.book_summary}</p>
                                                     </Container>
@@ -89,13 +100,15 @@ class BookDetail extends Component {
 
                                     </Col>
                                 </Row>
-                            
+                                <Row>
+                                    <Review book_id={this.state.book.id} star={this.state.star}></Review>
+                                </Row>                     
                         </Container>
                     </>
                     : null
 
                 }
-            </>)
+            </Container>)
     }
 }
 

@@ -31,7 +31,8 @@ class Popular extends Component {
                                     book_price={item.book_price}
                                     book_title={item.book_title}
                                     book_cover={item.book_cover_photo}
-                                    author_name={item.author_name}>
+                                    author_name={item.author_name}
+                                    id={item.id}>
                                 </BookCard>
                             </div>
                         )

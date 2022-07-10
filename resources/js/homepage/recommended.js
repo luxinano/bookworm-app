@@ -32,7 +32,8 @@ class Recommemded extends Component {
                                     final_price={item.final_price}
                                     book_title={item.book_title}
                                     book_cover={item.book_cover_photo}
-                                    author_name={item.author_name}>
+                                    author_name={item.author_name}
+                                    id={item.id}>
                                 </BookCard>
                             </div>
                         )

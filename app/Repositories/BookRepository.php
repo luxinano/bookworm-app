@@ -60,7 +60,8 @@ class BookRepository
             $book->orderBy('sub_price','desc');
         }
         if (($sort == 'popularity')) {
-            $book->orderBy('c.count_reviews', 'desc')
+            $book
+            ->orderbyRaw('count_reviews desc NULLS LAST')
             ->orderBy('f.final_price');
         }
         $perpage = !empty($request['perpage']) ? $request['perpage'] : 20;
@@ -91,7 +92,7 @@ class BookRepository
     {
         $final_price = $this->getFinalPrice(false);
         return $this->query
-            ->select('book_title', 'author_name', 'book_price', 'book_cover_photo', 'final_price')
+            ->select('book_title', 'author_name', 'book_price', 'book_cover_photo', 'final_price','book.id')
             ->selectRaw('book.book_price - discount.discount_price as sub_price')
             ->take(10)
             ->joinSub($final_price, 'f', function ($join) {

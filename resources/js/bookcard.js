@@ -20,9 +20,10 @@ class BookCard extends Component {
           <Card.Img variant="top" src={IMAGES[this.props.book_cover]} className="book-cover"/>
           </Button>
           <Card.Body>
-            <Card.Title>{this.props.book_title}</Card.Title>
+            <Card.Title><h6>{this.props.book_title}</h6></Card.Title>
             <Card.Text variant="bottom">
-                  {this.props.author_name}
+            <small>
+                  {this.props.author_name}</small>
                 </Card.Text>
           </Card.Body>
             <ListGroup className="list-group-flush " >
