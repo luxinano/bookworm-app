@@ -24,9 +24,11 @@
         "sass-loader": "^12.1.0"
     },
     "dependencies": {
+        "formik": "^2.2.9",
         "multiselect-react-dropdown": "^2.0.25",
         "react-router-dom": "^6.3.0",
         "react-slick": "^0.29.0",
-        "slick-carousel": "^1.8.1"
+        "slick-carousel": "^1.8.1",
+        "yup": "^0.32.11"
     }
 }

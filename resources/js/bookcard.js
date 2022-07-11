@@ -16,7 +16,7 @@ class BookCard extends Component {
 
       return ( 
         <Card   className="book-card shadow-sm">
-        <Button href={`#/book/${this.props.id}`}>
+        <Button variant="light" href={`#/book/${this.props.id}`}>
           <Card.Img variant="top" src={IMAGES[this.props.book_cover]} className="book-cover"/>
           </Button>
           <Card.Body>

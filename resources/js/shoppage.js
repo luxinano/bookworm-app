@@ -22,7 +22,7 @@ class ShopPage extends Component {
         authors: [],
         sort: 'Sort',
         show: 'Show 20',
-        fil_category: [0],
+        fil_category: [],
         fil_author: []
         
     }
@@ -44,10 +44,16 @@ class ShopPage extends Component {
         return (
             <Container>
                 <h3>Books</h3> 
+
+
                 Filtered by 
                 <p>{(this.category==='&category=0')
                 ? null
                 : `Category ${this.state.fil_category}`
+                }</p>
+                <p>{(this.author==='&author=0')
+                ? null
+                : `Author ${this.state.fil_author}`
                 }</p>
                 <hr></hr>
                 <br></br>
@@ -71,8 +77,9 @@ class ShopPage extends Component {
                                     onRemove={(a, seleted) => {
                                         this.category = '&category=0';
                                         for (let i = 0; i < a.length; ++i) {
-                                            this.category = `${this.category},${a[i].id}`
                                             this.setState({fil_category: a.map(({category_name})=>category_name)});
+                                            this.category = `${this.category},${a[i].id}`
+                                            
                                         }
                                         this.childCallables.doSomething(`${this.category}${this.author}${this.star}${this.sort}${this.per_page}`);
                                         
@@ -104,7 +111,9 @@ class ShopPage extends Component {
                                     onRemove={(seleted) => {
                                         this.author = '&author=0';
                                         for (let i = 0; i < seleted.length; ++i) {
+                                            this.setState({fil_author: seleted.map(({author_name})=>author_name)});
                                             this.author = `${this.author},${seleted[i].id}`
+                                            
                                         }
                                         this.childCallables.doSomething(`${this.category}${this.author}${this.star}${this.sort}${this.per_page}`);
                                     }}
@@ -112,7 +121,9 @@ class ShopPage extends Component {
                                     onSelect={(seleted) => {
                                         this.author = '&author=0';
                                         for (let i = 0; i < seleted.length; ++i) {
-                                            this.author = `${this.author},${seleted[i].id}`
+                                            this.author = `${this.author},${seleted[i].id}`;
+                                            
+                                            this.setState({fil_author: seleted.map(({author_name})=>author_name)});
                                         }
                                         this.childCallables.doSomething(`${this.category}${this.author}${this.star}${this.sort}${this.per_page}`);
                                     }}

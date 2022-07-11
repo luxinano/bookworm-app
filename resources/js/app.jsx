@@ -4,7 +4,7 @@ import HomePage from './homepage';
 import Header from './header';
 import Footer from './footer';
 import ShopPage from './shoppage';
-
+import AboutPage from './about'
 import BookDetail from './bookdetail';
 
 import { HashRouter, Routes, Route } from 'react-router-dom';
@@ -20,6 +20,7 @@ ReactDOM.render(
       <Route path="/" element={<HomePage />} exact />
       <Route path="/homepage" element={<HomePage />} />
       <Route path="/books" exact element={<ShopPage />} />
+      <Route path="/about" exact element={<AboutPage />} />
        <Route path="/book/:id" element={<BookDetail/> }/>  
     
     </Routes>

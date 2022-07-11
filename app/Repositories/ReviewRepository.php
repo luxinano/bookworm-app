@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Review;
+use Carbon\Carbon;
 
 class ReviewRepository
 {
@@ -60,5 +61,21 @@ class ReviewRepository
             ->groupBy('book_id')
             ->join('book', 'book.id', '=', 'review.book_id')
             ->get();
+    }
+
+    public function createReview($request){
+        $function = function ($key) use ($request){
+            return $request->json()->get($key);
+        };
+
+        $data=[
+            'book_id' => $function('book_id'),
+            'review_title' => $function('review_title'),
+            'review_details' => $function('review_details'),
+            'review_date' => Carbon::now(),
+            'rating_start' => $function('rating_star'),
+        ];
+        return Review::create($data);
+
     }
 }

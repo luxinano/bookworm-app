@@ -1,5 +1,5 @@
 import React, { Component, setState } from "react";
-import { Container, Card, Nav, Pagination, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Container, Card, Nav,Navbar, Pagination, Dropdown, DropdownButton, NavDropdown } from 'react-bootstrap';
 import axios from 'axios';
 
 class Review extends Component {
@@ -126,8 +126,12 @@ class Review extends Component {
 
 
         return (<>
-            <h3>Customer Reviews  </h3> <small> Filtered by () </small>
-
+            <h3>Customer Reviews  </h3> 
+            
+            
+            {(this.star !== 0)?
+            <small> Filtered by ({this.star} star) </small>:null
+        }
             <h2>{(this.state.avg !== '') ? this.state.avg.toFixed(2) : 0} Star</h2>
 
             {(this.state.star_count != null)
@@ -152,54 +156,55 @@ class Review extends Component {
 
 
             <Nav>
-                <Nav.Item>
+                <Navbar.Text>
                 {(this.state.review !== null)
                 ?
                 <>Showing {this.state.review.from} - {this.state.review.to} of {this.state.review.total} reviews</>
                 : null
-            }</Nav.Item>
+            }</Navbar.Text>
             <Nav.Item>
-                    <DropdownButton id="dropdown-basic-button" title={this.state.sort}>
-                        <Dropdown.Item onClick={(e) => {
+            
+                    <NavDropdown id="dropdown-basic-button" title={this.state.sort}>
+                        <NavDropdown.Item onClick={(e) => {
                             this.setState({ sort: e.target.textContent });
                             this.sort = `newtoold`
                             this.getReview(this.id, this.perpage, this.star, this.state.review.current_page, this.sort);
                         }
 
-                        }>Sort by date: newest to oldest</Dropdown.Item>
-                        <Dropdown.Item onClick={(e) => {
+                        }>Sort by date: newest to oldest</NavDropdown.Item>
+                        <NavDropdown.Item onClick={(e) => {
                             this.setState({ sort: e.target.textContent });
                             this.sort = `oldtonew`
                             this.getReview(this.id, this.perpage, this.star, this.state.review.current_page, this.sort);
-                        }}>Sort by date: oldest to newest</Dropdown.Item>
+                        }}>Sort by date: oldest to newest</NavDropdown.Item>
 
-                    </DropdownButton>
+                    </NavDropdown>
                 </Nav.Item>
                 <Nav.Item>
-                    <DropdownButton id="dropdown-basic-button" title={this.state.show} >
-                        <Dropdown.Item onClick={(e) => {
+                    <NavDropdown id="dropdown-basic-button" title={this.state.show} >
+                        <NavDropdown.Item onClick={(e) => {
                             this.setState({ show: e.target.textContent });
                             this.perpage = 5;
                             this.getReview(this.id, this.perpage, this.star, this.state.review.current_page, this.sort);
                         }
 
-                        }>Show 5</Dropdown.Item>
-                        <Dropdown.Item onClick={(e) => {
+                        }>Show 5</NavDropdown.Item>
+                        <NavDropdown.Item onClick={(e) => {
                             this.setState({ show: e.target.textContent });
                             this.perpage = 10;
                             this.getReview(this.id, this.perpage, this.star, this.state.review.current_page, this.sort);
-                        }}>Show 15</Dropdown.Item>
-                        <Dropdown.Item onClick={(e) => {
+                        }}>Show 15</NavDropdown.Item>
+                        <NavDropdown.Item onClick={(e) => {
                             this.setState({ show: e.target.textContent });
                             this.perpage = 20;
                             this.getReview(this.id, this.perpage, this.star, this.state.review.current_page, this.sort);
-                        }}>Show 20</Dropdown.Item>
-                        <Dropdown.Item onClick={(e) => {
+                        }}>Show 20</NavDropdown.Item>
+                        <NavDropdown.Item onClick={(e) => {
                             this.setState({ show: e.target.textContent });
                             this.perpage = 25;
                             this.getReview(this.id, this.perpage, this.star, this.state.review.current_page, this.sort);
-                        }}>Show 25</Dropdown.Item>
-                    </DropdownButton>
+                        }}>Show 25</NavDropdown.Item>
+                    </NavDropdown>
                 </Nav.Item>
             </Nav>
             {

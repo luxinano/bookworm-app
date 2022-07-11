@@ -181,3 +181,9 @@ main {
   height: 2rem;
   color: #495057;
 }
+
+.about{
+  width: 60%;
+  margin:auto;
+  justify-content: center;
+}

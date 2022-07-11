@@ -22,4 +22,10 @@ class ReviewController extends Controller
         $review = new ReviewRepository();
         return $review -> getRatingCount($book_id);
     }
+    public function store(Request $request)
+    {
+        $review = new ReviewRepository();
+        return $review -> createReview($request);
+    }
+
 }
