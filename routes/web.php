@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('session', [LoginController::class, 'store'])->name('login');
+Route::delete('session', [LoginController::class, 'destroy'])->name('logout');
+
 Route::prefix('admin')->group(function () {
     Route::name('admin.')->group(function () {
         Route::resource('books', BookController::class);

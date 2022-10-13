@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\PermissionException;
 use App\Http\Requests\StoreBookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;

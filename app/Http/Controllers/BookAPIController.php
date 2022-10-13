@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\PermissionException;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Resources\BookCollection;
 use App\Http\Resources\BookResource;
@@ -12,8 +13,7 @@ class BookAPIController extends Controller
 {
     public function index()
     {
-        $books = Book::orderBy('id', 'desc')->get();
-        return response()->json($books);
+        $books = Book::orderBy('id', 'desc')->paginate(5);
         return new BookCollection($books);
     }
 
@@ -36,7 +36,6 @@ class BookAPIController extends Controller
     public function show($id)
     {
         $book = Book::find($id);
-        //return response()->json($book);
         return new BookResource($book);
 
     }

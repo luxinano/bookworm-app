@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "61daf593-c2ef-409a-a9ce-11fbff721393",
+		"name": "bookworm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12350217"
+	},
+	"item": [
+		{
+			"name": "books",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "{{APP_URL}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{APP_URL}}/api/books",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"api",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "book",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "{{APP_URL}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{APP_URL}}/api/books/238",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"api",
+						"books",
+						"238"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "books",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "{{APP_URL}}",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{XSRF_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"book_title\": \"book_title 04\",\r\n    \"book_summary\": \"book_summary 4\",\r\n    \"book_price\": \"99\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_URL}}/api/books",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"api",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{XSRF_TOKEN}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"howell.taryn@example.net\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_URL}}/session",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Session",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Referer",
+						"value": "{{APP_URL}}",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{XSRF_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{APP_URL}}/session",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"howell.taryn@example.net\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APP_URL}}/api/session",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"api",
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{APP_URL}}/api/session",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"api",
+						"session"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.sendRequest({",
+					"    url: pm.collectionVariables.get(\"APP_URL\") + '/sanctum/csrf-cookie',",
+					"    method: 'GET'",
+					"}, function (error, response, { cookies }) {",
+					"    if (!error) {",
+					"        pm.collectionVariables.set('XSRF_TOKEN', cookies.get('XSRF-TOKEN'))",
+					"    }",
+					"})",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APP_URL",
+			"value": "http://bookworm-app.local",
+			"type": "string"
+		},
+		{
+			"key": "XSRF_TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
